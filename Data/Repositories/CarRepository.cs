@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Data.Repositories
 {
-    public class CarRepository
+    public class CarRepository : IRepository<Car>
     {
         private readonly string _connectionString = ConfigurationManager.ConnectionStrings["default"].ConnectionString;
 

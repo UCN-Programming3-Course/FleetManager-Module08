@@ -6,6 +6,7 @@ using Data.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
 
@@ -24,6 +25,10 @@ namespace Client
 
             builder.RegisterType<LocationRepository>()
                 .As<IRepository<Location>>();
+
+            //builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
+            //    .Where(t => t.Name.EndsWith("Repository"))
+            //    .AsImplementedInterfaces();
 
             var container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));

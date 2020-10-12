@@ -21,7 +21,10 @@ namespace Data.Repositories
 
         public IEnumerable<Location> GetAll()
         {
-            throw new NotImplementedException();
+            return new List<Location> {
+            new Location{Id=1, Name="Aalborg"},
+            new Location{Id=2, Name="Randers"}
+            };
         }
 
         public Location GetById(int id)

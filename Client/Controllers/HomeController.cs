@@ -1,4 +1,5 @@
-﻿using Data;
+﻿using Client.Models;
+using Data;
 using Data.Model;
 using Data.Repositories;
 using System;
@@ -23,7 +24,6 @@ namespace Client.Controllers
         // GET: Home        
         public ActionResult Index()
         {
-            _locationRepository.GetAll();
             var cars = _carRepository.GetAll();
             return View(cars);
         }
@@ -38,16 +38,26 @@ namespace Client.Controllers
         // GET: Home/Create
         public ActionResult Create()
         {
-            return View();
+            var car = new CarModel();
+            car.Locations = new SelectList(_locationRepository.GetAll(), "Id", "Name", 0);
+            return View(car);
         }
 
         // POST: Home/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(CarModel car)
         {
             try
             {
                 // TODO: Add insert logic here
+                var dbCar = new Car
+                {
+                    Brand = car.Brand,
+                    LocationId = car.SelectedLocationId,
+                    Mileage = car.Mileage,
+                    Reserved = car.Reserved,
+                };
+                _carRepository.Create(dbCar);
 
                 return RedirectToAction("Index");
             }

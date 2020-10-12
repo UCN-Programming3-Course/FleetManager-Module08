@@ -1,17 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Web;
+using System.Web.Mvc;
 
-namespace Data.Model
+namespace Client.Models
 {
-    public class Car
+    public class CarModel
     {
         public int Id { get; set; }
         public string Brand { get; set; }
         public int Mileage { get; set; }
         public DateTime? Reserved { get; set; }
-        public int LocationId { get; set; }
+
+        public int SelectedLocationId { get; set; }
+
+        public SelectList Locations { get; set; }
     }
 }
